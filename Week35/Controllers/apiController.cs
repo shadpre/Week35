@@ -1,12 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Week35.Controllers
+
 {
-    public class apiController : Controller
+    [ApiController]
+    public class apiController : ControllerBase
     {
-        public IActionResult Index()
+        [Route("/api/feed")]
+        [HttpGet]
+        public IActionResult getFeed()
         {
-            return View();
+            return Ok("OK");            
         }
+
+        [Route("/api/articles")]
+        [HttpGet]
+        public IActionResult getArticles()
+        {
+            return Ok("OK");
+        }
+
+        [Route("/api/articles")]
+        [HttpPost]
+        public IActionResult setArticles()
+        {
+            return Ok("OK");
+        }
+
     }
 }
