@@ -47,9 +47,8 @@ namespace Week35.Controllers
         /// <param name="articleId"></param>
         /// <response code="200">Success</response>
         /// <response code="204">Article not found</response>
-        /// <returns></returns>
+        /// <returns>Article with requested articleId</returns>
         /// 
-
         [HttpGet]        
         [Route("/api/articles/{articleId}")]
         [ValidateModelState]
