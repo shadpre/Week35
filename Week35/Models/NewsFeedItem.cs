@@ -5,7 +5,7 @@ using System.Text;
 namespace Week35.Models
 {
     [DataContract]
-    public class Article
+    public class NewsFeedItem
     {
         /// <summary>
         /// Gets or Sets Headline
@@ -13,13 +13,6 @@ namespace Week35.Models
 
         [DataMember(Name = "headline")]
         public string Headline { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Body
-        /// </summary>
-
-        [DataMember(Name = "body")]
-        public string Body { get; set; }
 
         /// <summary>
         /// Gets or Sets ArticleId
@@ -36,11 +29,11 @@ namespace Week35.Models
         public string ArticleImgUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Author
+        /// Gets or Sets Body
         /// </summary>
 
-        [DataMember(Name = "author")]
-        public string Author { get; set; }
+        [DataMember(Name = "body")]
+        public string Body { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -49,12 +42,11 @@ namespace Week35.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Article {\n");
+            sb.Append("class NewsFeedItem {\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
-            sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ArticleId: ").Append(ArticleId).Append("\n");
             sb.Append("  ArticleImgUrl: ").Append(ArticleImgUrl).Append("\n");
-            sb.Append("  Author: ").Append(Author).Append("\n");
+            sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -9,21 +9,40 @@ namespace Week35.Models
     {
         [DataContract]
         public class CreateArticleRequestDto
-        {
+        {/// <summary>
+         /// Gets or Sets Headline
+         /// </summary>
+
             [StringLength(30, MinimumLength = 5)]
             [DataMember(Name = "headline")]
             public string Headline { get; set; }
 
+            /// <summary>
+            /// Gets or Sets Author
+            /// </summary>
+
             [DataMember(Name = "author")]
             public string Author { get; set; }
 
+            /// <summary>
+            /// Gets or Sets ArticleImgUrl
+            /// </summary>
+
             [DataMember(Name = "articleImgUrl")]
             public string ArticleImgUrl { get; set; }
+
+            /// <summary>
+            /// Gets or Sets Body
+            /// </summary>
 
             [MaxLength(1000)]
             [DataMember(Name = "body")]
             public string Body { get; set; }
 
+            /// <summary>
+            /// Returns the string presentation of the object
+            /// </summary>
+            /// <returns>String presentation of the object</returns>
             public override string ToString()
             {
                 var sb = new StringBuilder();
@@ -35,6 +54,11 @@ namespace Week35.Models
                 sb.Append("}\n");
                 return sb.ToString();
             }
+
+            /// <summary>
+            /// Returns the JSON string presentation of the object
+            /// </summary>
+            /// <returns>JSON string presentation of the object</returns>
             public string ToJson()
             {
                 return JsonConvert.SerializeObject(this, Formatting.Indented);

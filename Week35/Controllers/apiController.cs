@@ -5,10 +5,9 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Week35.Attributes;
-
 using Microsoft.AspNetCore.Authorization;
 using Week35.Models;
+using static Week35.Models.CreateArticleRequestsDto;
 
 namespace Week35.Controllers
 
@@ -16,29 +15,46 @@ namespace Week35.Controllers
     [ApiController]
     public class apiController : ControllerBase
     {
-        [Route("/api/feed")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <response code="200">Success</response>
         [HttpGet]
+        [Route("/api/feed")]
+        [SwaggerOperation("ApiFeedGet")]
+        [SwaggerResponse(statusCode: 200, type: typeof(List<NewsFeedItem>), description: "Success")]
         public IActionResult getFeed()
         {
-            return Ok("OK");            
+            throw new NotImplementedException();        
         }
 
-        [Route("/api/articles")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchTerm"></param>
+        /// <param name="pageSize"></param>
+        /// <response code="200">Success</response>
         [HttpGet]
-        public IActionResult getArticles()
+        [Route("/api/articles")]        
+        [SwaggerOperation("ApiArticlesGet")]
+        [SwaggerResponse(statusCode: 200, type: typeof(List<SearchArticleItem>), description: "Success")]
+        public IActionResult getArticles([FromQuery][MinLength(3)] string searchTerm, [FromQuery][Range(1, 2147483647)] int? pageSize)
         {
-            return Ok("OK");
+            throw new NotImplementedException();
         }
-        
-        [Route("/api/articles")]
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <response code="200">Success</response>
         [HttpPost]
-        [ValidateModelState]
+        [Route("/api/articles")]
         [SwaggerOperation("ApiArticlesPost")]
         [SwaggerResponse(statusCode: 200, type: typeof(Article), description: "Success")]
-        public IActionResult setArticles([FromBody] Article article)
+        public IActionResult setArticles([FromBody] CreateArticleRequestDto body)
         {
-            article.ArticleId = 99;
-            return Ok(article);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -50,29 +66,41 @@ namespace Week35.Controllers
         /// <returns>Article with requested articleId</returns>
         /// 
         [HttpGet]        
-        [Route("/api/articles/{articleId}")]
-        [ValidateModelState]
+        [Route("/api/articles/{articleId}")]        
         [SwaggerOperation("ApiArticlesArticleIdGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(Article), description: "Success")]
         [SwaggerResponse(statusCode:204, description: "Article not found")]
         public IActionResult getArticleById([FromRoute] int articleId)
         { 
-            if (articleId == 0) { return NoContent(); }
-            return Ok(new Article() { ArticleId = articleId, ArticleImgUrl = "https://www.google.com", Author = "KTE", Body = "Lorem ipsum", Headline = "Lorem ipsum".ToUpper()});
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <param name="body"></param>
+        /// <response code="200">Success</response>
+        [HttpPut]
         [Route("/api/articles/{articleId}")]
-        [HttpPut] 
-        public IActionResult updateArticleById([FromRoute] int articleId)
+        [SwaggerOperation("ApiArticlesArticleIdPut")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Article), description: "Success")]
+        public IActionResult updateArticleById([FromRoute][Required] int? articleId, [FromBody] UpdateArticleRequestDto body)
         {
-            return Ok(articleId);
+            throw new NotImplementedException();
         }
 
-        [Route("/api/articles/{articleId}")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <response code="200">Success</response>
         [HttpDelete]
-        public IActionResult deleteArticleById([FromRoute] int articleId)
+        [Route("/api/articles/{articleId}")]
+        [SwaggerOperation("ApiArticlesArticleIdDelete")]
+        public IActionResult deleteArticleById([FromRoute][Required] int? articleId)
         {
-            return Ok(articleId);
+            throw new NotImplementedException();
         }
     }
 }
