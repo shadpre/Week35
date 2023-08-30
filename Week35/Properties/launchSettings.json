@@ -5,8 +5,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "pgconn": "postgres://yrtxkhlm:Er53SA1xrUyK20L5sIaGQ5T8IeRnA_KD@snuffleupagus.db.elephantsql.com/yrtxkhlm"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
