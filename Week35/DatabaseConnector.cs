@@ -5,24 +5,33 @@ namespace Week35
 {
     public class DatabaseConnector
     {
-        private static string _connectionString =
-        "User ID=xsxmxiiw; " +
-        "Password=2TYFrLDyFVsDhgVpYGxd32GNEoP64nRI; " +
-        "Host=snuffleupagus.db.elephantsql.com; " +
-        "Port=5432; " +
-        "Database=xsxmxiiw; " +
-        "Pooling=true;Min Pool Size=0;Max Pool Size=100; " +
-        "Connection Lifetime=0;";
-    
+        private static DatabaseConnector _instance;
 
-        private DatabaseConnector(string connectionString)
+        public  NpgsqlConnection con { get; }
+        public string ConnectionString { get; }
+
+        private DatabaseConnector()
         {
-            _connectionString = connectionString;
+            ConnectionString = GetConfiguration().GetConnectionString("myDb1");
+            con = new NpgsqlConnection(GetConfiguration().GetConnectionString("myDb1"));
         }
 
-        public static void Init(string connectionString)
+        private static void Init()
         {
-            new DatabaseConnector(connectionString);
+            _instance = new DatabaseConnector();
+            
+        }
+
+        public static DatabaseConnector GetInstance() 
+        { 
+            if(_instance == null) Init();
+            return _instance;
+        }
+
+        public static IConfigurationRoot GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            return builder.Build();
         }
     }
 }
